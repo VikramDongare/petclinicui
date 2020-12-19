@@ -17,17 +17,40 @@ When('User clicks on Add Visit button', async function () {
 });
 When('User selects date from calendar', async function () {
     await editOwnObj.date.click();
-    let month = "12 2022";
+    let month = "12 2019";
     let date = "20";
     while (true) {
         let currentMonth = await editOwnObj.month.getText();
         await console.log("Month : " + currentMonth);
+
+        if (month > currentMonth) {
+        }
+        else {
+            await editOwnObj.previousMnth.click();
+        }
+
         if (month == currentMonth) {
             break;
         }
+
         else {
             await editOwnObj.nextMnth.click();
         }
     }
     await element(by.xpath("//*[@class='mat-calendar-table']/tbody/tr/td[.='" + date + "']")).click();
 });
+
+// await editOwnObj.date.click();
+// let month = "12 2022";
+// let date = "20";
+// while (true) {
+//     let currentMonth = await editOwnObj.month.getText();
+//     await console.log("Month : " + currentMonth);
+//     if (month == currentMonth) {
+//         break;
+//     }
+//     else {
+//         await editOwnObj.nextMnth.click();
+//     }
+// }
+// await element(by.xpath("//*[@class='mat-calendar-table']/tbody/tr/td[.='" + date + "']")).click();

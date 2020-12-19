@@ -6,6 +6,7 @@ export class editOwnerObj {
     month: ElementFinder;
     selectDate: ElementFinder;
     nextMnth: ElementFinder;
+    previousMnth: ElementFinder;
 
     constructor() {
         this.firstOwner = element(by.xpath("//*[@class='table table-striped']/tbody/tr[1]/td[1]/a"));
@@ -15,6 +16,7 @@ export class editOwnerObj {
         this.selectDate = element(by.css('.cdk-overlay-container mat-month-view[aria-label="2020/12/01"]'));
         //this.nextMnth = element(by.xpath("//*[@class='mat-calendar-next-button mat-icon-button']"));
         this.nextMnth = element(by.xpath("//*[@aria-label='Next month']"));
+        this.previousMnth= element(by.xpath("//*[@aria-label='Previous month']"));
             
 
     }
