@@ -1,7 +1,8 @@
 Feature: Test
 
     Scenario: Verify
-        Given
-        When
-        And
-        Then
+        Given test
+        When test
+        And test
+        Then test
+
