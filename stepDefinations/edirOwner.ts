@@ -23,18 +23,13 @@ When('User selects date from calendar', async function () {
         let currentMonth = await editOwnObj.month.getText();
         await console.log("Month : " + currentMonth);
 
-        if (month > currentMonth) {
-        }
-        else {
-            await editOwnObj.previousMnth.click();
-        }
-
         if (month == currentMonth) {
             break;
         }
 
         else {
-            await editOwnObj.nextMnth.click();
+            await editOwnObj.previousMnth.click();
+            //await editOwnObj.nextMnth.click();
         }
     }
     await element(by.xpath("//*[@class='mat-calendar-table']/tbody/tr/td[.='" + date + "']")).click();
