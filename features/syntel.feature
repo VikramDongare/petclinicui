@@ -1,8 +1,8 @@
-Feature: Test
+# Feature: Test
 
-    Scenario: Verify
-        Given test
-        When test
-        And test
-        Then test
+#     Scenario: Verify
+#         Given test
+#         When test
+#         And test
+#         Then test
 
