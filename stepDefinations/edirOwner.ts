@@ -3,14 +3,14 @@ import { element, by } from "protractor";
 import { editOwnerObj } from "../pageObjects/editOwnerObj";
 import { browser } from "protractor";
 const expect = global['chai'].expect;
-
-var { setDefaultTimeout } = require('cucumber');
-setDefaultTimeout(50 * 1000);
-
 let editOwnObj = new editOwnerObj();
 
+let { setDefaultTimeout } = require('cucumber');
+setDefaultTimeout(50 * 1000);
+
 When('User clicks on first owner name to check owner information', async function () {
-    await editOwnObj.firstOwner.click();
+    let text = await editOwnObj.firstOwner.getText();
+    await console.log("text : " + text);
 });
 When('User clicks on Add Visit button', async function () {
     await editOwnObj.addVisit.click();
@@ -26,7 +26,6 @@ When('User selects date from calendar', async function () {
         if (month == currentMonth) {
             break;
         }
-
         else {
             await editOwnObj.previousMnth.click();
             //await editOwnObj.nextMnth.click();
@@ -35,17 +34,3 @@ When('User selects date from calendar', async function () {
     await element(by.xpath("//*[@class='mat-calendar-table']/tbody/tr/td[.='" + date + "']")).click();
 });
 
-// await editOwnObj.date.click();
-// let month = "12 2022";
-// let date = "20";
-// while (true) {
-//     let currentMonth = await editOwnObj.month.getText();
-//     await console.log("Month : " + currentMonth);
-//     if (month == currentMonth) {
-//         break;
-//     }
-//     else {
-//         await editOwnObj.nextMnth.click();
-//     }
-// }
-// await element(by.xpath("//*[@class='mat-calendar-table']/tbody/tr/td[.='" + date + "']")).click();

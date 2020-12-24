@@ -9,7 +9,7 @@ export class editOwnerObj {
     previousMnth: ElementFinder;
 
     constructor() {
-        this.firstOwner = element(by.xpath("//*[@class='table table-striped']/tbody/tr[1]/td[1]/a"));
+        this.firstOwner = element(by.xpath("//*[@class='table table-striped']/tbody/tr[1]/td[1]"));
         this.addVisit = element(by.xpath("//*[contains(text(),'Add Visit')]"));
         this.date = element(by.xpath("//*[@class='mat-datepicker-toggle']"));
         this.month = element(by.xpath("//*[@class='mat-calendar-period-button mat-button']"));

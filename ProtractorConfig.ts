@@ -1,6 +1,6 @@
 import { Config, browser } from "protractor";
 let reporter = require('cucumber-html-reporter');
-const globalAny:any=global;
+const globalAny: any = global;
 
 let today = new Date();
 let dd = String(today.getDate()).padStart(2, '0');
@@ -14,10 +14,7 @@ export let config: Config = {
 
   allScriptsTimeout: 50000,
   getPageTimeout: 50000,
-  // The address of a running selenium server.
-  //seleniumAddress: 'http://localhost:4444/wd/hub',
   directConnect: true,
-
   SELENIUM_PROMISE_MANAGER: false,
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
@@ -49,16 +46,17 @@ export let config: Config = {
     '../features/homePage.feature',
     '../features/newOwner.feature',
     '../features/editOwner.feature',
+    '../features/veterinarians.feature'
   ],
 
   cucumberOpts: {
     // require step definitions
-    tags: "@smoke",
+    tags: "@test1",
     format: 'json:./cucumberreport.json',
     strict: true,
 
     require: [
-      './stepDefinations/*.js', // accepts a glob,
+      './stepDefinations/*.js',
 
     ]
   },
@@ -68,7 +66,7 @@ export let config: Config = {
     browser.ignoreSynchronization = false;
     browser.driver.manage().window().maximize();
     const chai = require("chai").use(require("chai-as-promised"));
-    globalAny.chai=chai;
+    globalAny.chai = chai;
   },
   onComplete: () => {
     var options = {
@@ -80,17 +78,14 @@ export let config: Config = {
       reportSuiteAsScenarios: true,
       launchReport: true,
       metadata: {
-        "App Version": "0.3.2",
+        "App Version": "0.1.0",
         "Test Environment": "test",
-        "Browser": "Chrome  79.0.3945.88",
+        "Browser": "Chrome  87.0.4280.88",
         "Platform": "Windows 7",
         "Parallel": "Scenarios",
         "Executed": "Web App"
       }
     };
-
     reporter.generate(options);
-
-
   }
 };

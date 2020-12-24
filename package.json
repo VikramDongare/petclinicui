@@ -4,11 +4,11 @@
   "description": "Test",
   "main": "index.js",
   "scripts": {
-    "test": "protractor JSFiles/ProtractorConfig.js",
     "pretest": "tsc",
-    "protractor": "./node_modules/protractor/built/cli.js",
+    "test": "protractor JSFiles/ProtractorConfig.js",
     "prestart": "./node_modules/.bin/webdriver-manager update",
     "start": "./node_modules/.bin/webdriver-manager start",
+    "protractor": "./node_modules/protractor/built/cli.js",
     "webdriver_update": "./node_modules/.bin/webdriver-manager update",
     "clean": "./node_modules/.bin/webdriver-manager clean"
   },

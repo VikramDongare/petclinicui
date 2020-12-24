@@ -1,11 +1,17 @@
 export default {
     userData: {
         OwnerData: {
-            FirstName: "Elizabeth",
-            LastName: "Davies",
-            Address: "A-10",
-            City: "PUNE",
-            Telephone: "12345"
+            FirstName: "Jesus",
+            LastName: "Jones",
+            Address: "4568",
+            City: "Mexia",
+            Telephone: "2542379152",
+            ownerDetails:"Jesus Jones 4568 Mexia 2542379152"
+        },
+        petDetails: {
+            Name: "George",
+            BirhDate: "2010/01/20",
+            Type: "snake",
         }
 
     }
