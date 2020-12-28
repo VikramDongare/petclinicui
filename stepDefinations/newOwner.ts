@@ -1,6 +1,6 @@
 import { Given, When, Then } from "cucumber";
-import { newOwnerPageObject } from "../pageObjects/newOwnerPageObjects";
-import { HomePageObjects } from "../pageObjects/HomePageObjects";
+import { NewOwnerPageObject } from "../pageObjects/newOwnerPageObjects";
+import { HomePageObjects } from "../pageObjects/homePageObjects";
 import { browser, by, element, ExpectedConditions } from "protractor";
 import testdata from "../testdata/userData";
 
@@ -10,26 +10,26 @@ setDefaultTimeout(50 * 1000);
 const expect = global['chai'].expect;
 let ec = ExpectedConditions;
 let homeObj = new HomePageObjects();
-let newOwnerObj = new newOwnerPageObject();
+let newOwnerObj = new NewOwnerPageObject();
 
 Given('User is on New Owner page', async function () {
-    let pagename = await homeObj.PageName.getText();
+    let pagename = await homeObj.pageName.getText();
     await expect('New Owner').to.equal(pagename);
     await console.log("page name is : " + pagename);
 });
 When('User enter valid First Name, Last Name, Address, City, Telephone', async function () {
-    await newOwnerObj.FirstName.sendKeys(testdata.userData.OwnerData.FirstName);
-    await newOwnerObj.LastName.sendKeys(testdata.userData.OwnerData.LastName);
-    await newOwnerObj.Address.sendKeys(testdata.userData.OwnerData.Address);
-    await newOwnerObj.City.sendKeys(testdata.userData.OwnerData.City);
-    await newOwnerObj.Telephone.sendKeys(testdata.userData.OwnerData.Telephone);
+    await newOwnerObj.firstName.sendKeys(testdata.userData.OwnerData.firstName);
+    await newOwnerObj.lastName.sendKeys(testdata.userData.OwnerData.lastName);
+    await newOwnerObj.address.sendKeys(testdata.userData.OwnerData.address);
+    await newOwnerObj.city.sendKeys(testdata.userData.OwnerData.city);
+    await newOwnerObj.telephone.sendKeys(testdata.userData.OwnerData.telephone);
 });
 When('User clicks on Add Owner button on New Owner page', async function () {
-    await newOwnerObj.AddOwnerButton.click();
+    await newOwnerObj.addOwnerButton.click();
 });
 Then('User should be navigate on Owners page and added owner should be displayed at last', async function () {
-    await browser.wait(ec.visibilityOf(homeObj.PageName), 20000, 'Taking too long to load');
-    let pagename = await homeObj.PageName.getText();
+    await browser.wait(ec.visibilityOf(homeObj.pageName), 20000, 'Taking too long to load');
+    let pagename = await homeObj.pageName.getText();
     await console.log("page name is : " + pagename);
     await browser.refresh();
     await browser.wait(ec.visibilityOf(newOwnerObj.ownerListTbl), 20000, 'Taking too long to load');
@@ -57,17 +57,17 @@ When('User clicks on existing owner name', async function () {
 Then('Pets details like Name,Birth Date,Type should be displayed', async function () {
     await newOwnerObj.petName.getText().then(async function (petName) {
         await console.log("PetName is :" + petName);
-        await expect(testdata.userData.petDetails.Name).to.equal(petName);
+        await expect(testdata.userData.petDetails.name).to.equal(petName);
     });
-    testdata.userData.petDetails.Name
+    testdata.userData.petDetails.name
     await newOwnerObj.petBdate.getText().then(async function (petBDate) {
         console.log("Pet Birthdate:" + petBDate);
-        await expect(testdata.userData.petDetails.BirhDate).to.equal(petBDate);
+        await expect(testdata.userData.petDetails.birhDate).to.equal(petBDate);
     });
 
     await newOwnerObj.petType.getText().then(async function (petType) {
         console.log("Pet Type:" + petType);
-        await expect(testdata.userData.petDetails.Type).to.equal(petType);
+        await expect(testdata.userData.petDetails.type).to.equal(petType);
     });
 
 });

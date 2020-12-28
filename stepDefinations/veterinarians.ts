@@ -1,6 +1,6 @@
 import { Given, When, Then } from "cucumber";
 import { VetPageObj } from "../pageObjects/vetObj";
-import { HomePageObjects } from "../pageObjects/HomePageObjects";
+import { HomePageObjects } from "../pageObjects/homePageObjects";
 import { by } from "protractor";
 
 const expect = global['chai'].expect;
@@ -34,13 +34,13 @@ Given('User is on Veterinarians tab', async function () {
     await expect("VETERINARIANS").to.equal(veterinarians);
 });
 Then('Veterinarians list should be displayed', async function () {
-    let page = await homeObj.PageName.getText();
+    let page = await homeObj.pageName.getText();
     await console.log(" page name is : " + page);
     await expect("Veterinarians").to.equal(page);
 });
 
 Given('User is on veterinarians page', async function () {
-    let page = await homeObj.PageName.getText();
+    let page = await homeObj.pageName.getText();
     await expect("Veterinarians").to.equal(page);
 });
 Then('User should see total numbers of radiology from veterinarians Specialties', async function () {

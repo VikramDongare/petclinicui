@@ -25,22 +25,10 @@ export let config: Config = {
   capabilities:
   {
     browserName: 'chrome',
-
     chromeOptions: {
-
       args: ["--incognito"],
-
-      prefs: {
-
-        download: {
-          prompt_for_download: false,
-          directory_upgrade: true,
-          default_directory: './Download/'
-        }
-      }
     }
   },
-
   specs: [
     '../features/login.feature',
     '../features/homePage.feature',
@@ -81,7 +69,7 @@ export let config: Config = {
         "App Version": "0.1.0",
         "Test Environment": "test",
         "Browser": "Chrome  87.0.4280.88",
-        "Platform": "Windows 7",
+        "Platform": "Windows 10",
         "Parallel": "Scenarios",
         "Executed": "Web App"
       }

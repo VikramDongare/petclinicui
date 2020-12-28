@@ -1,9 +1,9 @@
 import { Given, When, Then } from "cucumber";
 import { element, by } from "protractor";
-import { editOwnerObj } from "../pageObjects/editOwnerObj";
+import { EditOwnerObj } from "../pageObjects/editOwnerObj";
 import { browser } from "protractor";
 const expect = global['chai'].expect;
-let editOwnObj = new editOwnerObj();
+let editOwnObj = new EditOwnerObj();
 
 let { setDefaultTimeout } = require('cucumber');
 setDefaultTimeout(50 * 1000);

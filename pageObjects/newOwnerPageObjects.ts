@@ -1,12 +1,12 @@
 import { ElementFinder, element, by, ElementArrayFinder } from "protractor";
 
-export class newOwnerPageObject {
-    FirstName: ElementFinder;
-    LastName: ElementFinder;
-    Address: ElementFinder;
-    City: ElementFinder;
-    Telephone: ElementFinder;
-    AddOwnerButton: ElementFinder;
+export class NewOwnerPageObject {
+    firstName: ElementFinder;
+    lastName: ElementFinder;
+    address: ElementFinder;
+    city: ElementFinder;
+    telephone: ElementFinder;
+    addOwnerButton: ElementFinder;
     ownerListTbl: ElementFinder;
     ownerTblHeader: ElementFinder;
     ownerInfo: ElementFinder;
@@ -14,12 +14,12 @@ export class newOwnerPageObject {
     petBdate: ElementFinder;
     petType: ElementFinder;
     constructor() {
-        this.FirstName = element(by.xpath("//*[@id='firstName']"));
-        this.LastName = element(by.xpath("//*[@id='lastName']"));
-        this.Address = element(by.xpath("//*[@id='address']"));
-        this.City = element(by.xpath("//*[@id='city']"));
-        this.Telephone = element(by.xpath("//*[@id='telephone']"));
-        this.AddOwnerButton = element(by.xpath("//*[contains(text(),'Add Owner')]"));
+        this.firstName = element(by.xpath("//*[@id='firstName']"));
+        this.lastName = element(by.xpath("//*[@id='lastName']"));
+        this.address = element(by.xpath("//*[@id='address']"));
+        this.city = element(by.xpath("//*[@id='city']"));
+        this.telephone = element(by.xpath("//*[@id='telephone']"));
+        this.addOwnerButton = element(by.xpath("//*[contains(text(),'Add Owner')]"));
         this.ownerListTbl = element(by.xpath("//*[@class='table table-striped']/tbody"));
         this.ownerTblHeader = element(by.xpath("//*[@class='table table-striped']/thead/tr"));
         this.ownerInfo = element(by.xpath("//*[contains(text(),'Owner Information')]"));

@@ -1,5 +1,5 @@
 import { ElementFinder, element, by, ElementArrayFinder } from "protractor";
-export class editOwnerObj {
+export class EditOwnerObj {
     firstOwner: ElementFinder;
     addVisit: ElementFinder;
     date: ElementFinder;

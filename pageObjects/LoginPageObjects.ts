@@ -1,10 +1,10 @@
 import { ElementFinder, element, by, ElementArrayFinder } from "protractor";
 
 export class LoginPageObjects {
-    WelcomeMsg: ElementFinder;
+    welcomeMsg: ElementFinder;
 
     constructor() {
-        this.WelcomeMsg = element(by.xpath("//*[contains(text(),'Welcome to Petclinic')]"));
+        this.welcomeMsg = element(by.xpath("//*[contains(text(),'Welcome to Petclinic')]"));
 
     }
 }
