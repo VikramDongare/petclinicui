@@ -1,7 +1,5 @@
 import { Config, browser } from "protractor";
 let reporter = require('cucumber-html-reporter');
-const globalAny: any = global;
-
 let today = new Date();
 let dd = String(today.getDate()).padStart(2, '0');
 let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -19,9 +17,6 @@ export let config: Config = {
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
-
-  // Capabilities to be passed to the webdriver instance.
-
   capabilities:
   {
     browserName: 'chrome',
@@ -30,16 +25,14 @@ export let config: Config = {
     }
   },
   specs: [
-    '../features/login.feature',
-    '../features/homePage.feature',
     '../features/newOwner.feature',
-    '../features/editOwner.feature',
+    '../features/existingOwner.feature',
     '../features/veterinarians.feature'
   ],
 
   cucumberOpts: {
     // require step definitions
-    tags: "@test1",
+    //tags: "@POM",
     format: 'json:./cucumberreport.json',
     strict: true,
 
@@ -50,11 +43,8 @@ export let config: Config = {
   },
 
   onPrepare: () => {
-
     browser.ignoreSynchronization = false;
     browser.driver.manage().window().maximize();
-    const chai = require("chai").use(require("chai-as-promised"));
-    globalAny.chai = chai;
   },
   onComplete: () => {
     var options = {

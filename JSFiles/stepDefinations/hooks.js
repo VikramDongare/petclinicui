@@ -11,6 +11,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const cucumber_1 = require("cucumber");
 const protractor_1 = require("protractor");
+const userData_1 = require("../testdata/userData");
+cucumber_1.BeforeAll(function () {
+    return __awaiter(this, void 0, void 0, function* () {
+        // This hook will be executed beforeAll scenarios
+        yield protractor_1.browser.get(userData_1.default.appUrl);
+    });
+});
 cucumber_1.Before(function () {
     return __awaiter(this, void 0, void 0, function* () {
         // This hook will be executed before scenarios
@@ -20,8 +27,17 @@ cucumber_1.Before(function () {
 cucumber_1.After(function (scenario) {
     return __awaiter(this, void 0, void 0, function* () {
         //This hook will be executed after each scenarios
-        const screenshot = yield protractor_1.browser.takeScreenshot();
-        this.attach(screenshot, "image/png");
+        if (scenario.result.status == "failed") {
+            const screenshot = yield protractor_1.browser.takeScreenshot();
+            this.attach(screenshot, "image/png");
+        }
     });
 });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaG9va3MuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zdGVwRGVmaW5hdGlvbnMvaG9va3MudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSx1Q0FBaUQ7QUFDakQsMkNBQXFDO0FBRXJDLGlCQUFNLENBQUM7O1FBQ0wsOENBQThDO1FBQzlDLDREQUE0RDtJQUM5RCxDQUFDO0NBQUEsQ0FBQyxDQUFDO0FBRUgsZ0JBQUssQ0FBQyxVQUFnQixRQUFROztRQUM1QixpREFBaUQ7UUFDakQsTUFBTSxVQUFVLEdBQUcsTUFBTSxvQkFBTyxDQUFDLGNBQWMsRUFBRSxDQUFDO1FBQ2xELElBQUksQ0FBQyxNQUFNLENBQUMsVUFBVSxFQUFFLFdBQVcsQ0FBQyxDQUFBO0lBQ3RDLENBQUM7Q0FBQSxDQUFDLENBQUMifQ==
+// After(async function (scenario: any) {
+//   if (scenario.result.status = Status.Failed) {
+//     const screenshot = await browser.takeScreenshot();
+//     //const img = Buffer.alloc(screenShot.length, screenShot, 'base64');
+//     scenario.attach(screenshot, "image/png");
+//   }
+// });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaG9va3MuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zdGVwRGVmaW5hdGlvbnMvaG9va3MudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSx1Q0FBNEQ7QUFDNUQsMkNBQXFDO0FBQ3JDLG1EQUE0QztBQUc1QyxvQkFBUyxDQUFDOztRQUNSLGlEQUFpRDtRQUNqRCxNQUFNLG9CQUFPLENBQUMsR0FBRyxDQUFDLGtCQUFRLENBQUMsTUFBTSxDQUFDLENBQUM7SUFDckMsQ0FBQztDQUFBLENBQUMsQ0FBQztBQUVILGlCQUFNLENBQUM7O1FBQ0wsOENBQThDO1FBQzlDLDREQUE0RDtJQUM5RCxDQUFDO0NBQUEsQ0FBQyxDQUFDO0FBRUgsZ0JBQUssQ0FBQyxVQUFnQixRQUFROztRQUM1QixpREFBaUQ7UUFDakQsSUFBSSxRQUFRLENBQUMsTUFBTSxDQUFDLE1BQU0sSUFBRyxRQUFRLEVBQUU7WUFDdkMsTUFBTSxVQUFVLEdBQUcsTUFBTSxvQkFBTyxDQUFDLGNBQWMsRUFBRSxDQUFDO1lBQ2xELElBQUksQ0FBQyxNQUFNLENBQUMsVUFBVSxFQUFFLFdBQVcsQ0FBQyxDQUFBO1NBQ25DO0lBQ0gsQ0FBQztDQUFBLENBQUMsQ0FBQztBQUVILHlDQUF5QztBQUN6QyxrREFBa0Q7QUFDbEQseURBQXlEO0FBQ3pELDJFQUEyRTtBQUMzRSxnREFBZ0Q7QUFDaEQsTUFBTTtBQUNOLE1BQU0ifQ==

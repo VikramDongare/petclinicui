@@ -1,73 +1,32 @@
 import { Given, When, Then } from "cucumber";
-import { NewOwnerPageObject } from "../pageObjects/newOwnerPageObjects";
-import { HomePageObjects } from "../pageObjects/homePageObjects";
-import { browser, by, element, ExpectedConditions } from "protractor";
-import testdata from "../testdata/userData";
+import { NewOwnerPage } from "../pageObjects/newOwnerPage";
+import { HomePage } from "../pageObjects/homePage";
+import { browser, ExpectedConditions } from "protractor";
+const log = require("../logConfig/logging").default;
 
 let { setDefaultTimeout } = require('cucumber');
 setDefaultTimeout(50 * 1000);
 
-const expect = global['chai'].expect;
+const expect = require('chai').expect;
 let ec = ExpectedConditions;
-let homeObj = new HomePageObjects();
-let newOwnerObj = new NewOwnerPageObject();
+let home = new HomePage();
+let newOwner = new NewOwnerPage();
 
-Given('User is on New Owner page', async function () {
-    let pagename = await homeObj.pageName.getText();
-    await expect('New Owner').to.equal(pagename);
-    await console.log("page name is : " + pagename);
+Given('User is on petclininc home page', async function () {
+    await home.navigateToHomePage();
+    let title = await home.pageTitle.getText();
+    await expect(title).to.equal('Welcome to Petclinic');
 });
-When('User enter valid First Name, Last Name, Address, City, Telephone', async function () {
-    await newOwnerObj.firstName.sendKeys(testdata.userData.OwnerData.firstName);
-    await newOwnerObj.lastName.sendKeys(testdata.userData.OwnerData.lastName);
-    await newOwnerObj.address.sendKeys(testdata.userData.OwnerData.address);
-    await newOwnerObj.city.sendKeys(testdata.userData.OwnerData.city);
-    await newOwnerObj.telephone.sendKeys(testdata.userData.OwnerData.telephone);
+When('User clicks on owners tab and selects Add New dropdown menu', async function () {
+    await home.navigateToNewOwnerPage();
 });
-When('User clicks on Add Owner button on New Owner page', async function () {
-    await newOwnerObj.addOwnerButton.click();
+When('User enter valid owners detais as{string} {string} {string} {string} {string}', async function (First_Name: any, Last_Name: any, Address: any, City: any, Telephone: any) {
+    await newOwner.addNewOwner({ First_Name, Last_Name, Address, City, Telephone });
+    await expect(true).to.equal(true);
 });
-Then('User should be navigate on Owners page and added owner should be displayed at last', async function () {
-    await browser.wait(ec.visibilityOf(homeObj.pageName), 20000, 'Taking too long to load');
-    let pagename = await homeObj.pageName.getText();
-    await console.log("page name is : " + pagename);
+Then('User should be navigate on Owners page and added owner should be saved', async function () {
+    await newOwner.navigateToOwnersPage();
     await browser.refresh();
-    await browser.wait(ec.visibilityOf(newOwnerObj.ownerListTbl), 20000, 'Taking too long to load');
-    let ownerDetails = await newOwnerObj.ownerListTbl.all(by.tagName("tr")).last();
-    await browser.actions().mouseMove(ownerDetails).perform();
-    let ownerName = await ownerDetails.getText();
-    await browser.wait(ec.elementToBeClickable(ownerDetails), 20000, 'Element taking too long to appear in the DOM');
-    await console.log("Recently added owner details : " + ownerName);
-    await expect(testdata.userData.OwnerData.ownerDetails).to.equal(ownerName);
-
+    await newOwner.verifyOwnersEntry();
 });
-When('User clicks on existing owner name', async function () {
-    let count = await newOwnerObj.ownerListTbl.all(by.tagName("tr")).count();
-    await console.log(count);
-    for (let i = 1; i <= count; i++) {
-        let owners = await element(by.xpath("//*[@class='table table-striped']/tbody/tr[" + i + "]/td/a")).getAttribute("innerText");
-        console.log(owners);
-        if (owners == "Peter McTavish") {
-            await element(by.xpath("//*[@class='table table-striped']/tbody/tr[" + i + "]/td/a")).click();
-            break;
-        }
-    }
 
-});
-Then('Pets details like Name,Birth Date,Type should be displayed', async function () {
-    await newOwnerObj.petName.getText().then(async function (petName) {
-        await console.log("PetName is :" + petName);
-        await expect(testdata.userData.petDetails.name).to.equal(petName);
-    });
-    testdata.userData.petDetails.name
-    await newOwnerObj.petBdate.getText().then(async function (petBDate) {
-        console.log("Pet Birthdate:" + petBDate);
-        await expect(testdata.userData.petDetails.birhDate).to.equal(petBDate);
-    });
-
-    await newOwnerObj.petType.getText().then(async function (petType) {
-        console.log("Pet Type:" + petType);
-        await expect(testdata.userData.petDetails.type).to.equal(petType);
-    });
-
-});

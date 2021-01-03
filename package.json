@@ -24,6 +24,7 @@
     "chai-sorted": "^0.2.0",
     "cucumber": "^5.1.0",
     "jasmine": "^3.4.0",
+    "log4js": "^6.3.0",
     "moment": "^2.27.0",
     "properties-reader": "^0.3.1",
     "protractor": "^5.4.3",
