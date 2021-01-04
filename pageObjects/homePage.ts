@@ -9,7 +9,7 @@ export class HomePage {
     private addNewDropdown = element(by.css('[href="/petclinic/owners/add"]'));
     private allVetDropdown = element(by.css('[href="/petclinic/vets"]'));
 
-
+//
     public async navigateToHomePage() {
         await this.home.click();
     }
