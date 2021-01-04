@@ -8,10 +8,6 @@ export class VetPage {
     private vetListTbl = element.all(by.css('table.table-striped'));
     public pageName = element(by.css('div .xd-container h2'));
 
-    public async navigateToVetPage() {
-        await home.vetTab.click();
-        await home.allVetDropdown.click();
-    }
     public async verifyRadiologyCount() {
         let specialties = "radiology";
         let spec = 0;
