@@ -14,8 +14,7 @@ let newOwner = new NewOwnerPage();
 
 Given('User is on petclininc home page', async function () {
     await home.navigateToHomePage();
-    let title = await home.pageTitle.getText();
-    await expect(title).to.equal('Welcome to Petclinic');
+    await home.verifyTitle();
 });
 When('User clicks on owners tab and selects Add New dropdown menu', async function () {
     await home.navigateToNewOwnerPage();
